@@ -5,7 +5,7 @@ function App() {
     username: "taro",
     password: "hogehoge",
   };
-  return <AComponent {...sample} />;
+  return <AComponent username={sample.username} />;
 }
 
 export default App;

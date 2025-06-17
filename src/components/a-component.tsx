@@ -1,18 +1,18 @@
-import { z } from "zod";
+import type { StrictPropertyCheck } from "../shared/props";
 
-const propsSchema = z
-  .object({
-    username: z.string(),
-  })
-  .strict();
+interface AProps {
+  username: string;
+}
 
-type Props = z.infer<typeof propsSchema>;
+export function AComponent<T extends AProps>(
+  props: StrictPropertyCheck<T, AProps, `T has excess property`>
+) {
+  const { username } = props;
 
-export function AComponent(props: Props) {
   return (
     <>
       <h1>AComponent</h1>
-      {props.username}
+      {username}
       <br />
       {JSON.stringify(props)}
     </>
